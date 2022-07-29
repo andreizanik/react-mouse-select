@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 
 import { handleSelection } from './helpers/handleSelection';
 import { mouseMoveCheckToStart } from './helpers/mouseMoveCheckToStart';
-import { MouseMovePosition, MouseSelectProps } from './types';
+import { MouseMovePosition, ReactMouseSelectProps } from './types';
+
 
 let elements: HTMLCollection;
 const defaultPositionState: MouseMovePosition = {
@@ -15,24 +16,27 @@ const defaultPositionState: MouseMovePosition = {
   height: 0,
 };
 
-export const MouseBorderSelect = ({
+export const ReactMouseSelect = ({
   containerRef,
   sensitivity = 10,
   tolerance = 0,
   portalContainer,
   onClickPreventDefault = false,
   notStartWithSelectableElements = false,
+  saveSelectAfterFinish = false,
   itemClassName = 'mouse-select__selectable',
-  activeItemClassName = 'selected',
+  selectedItemClassName = 'selected',
+  frameClassName = 'mouse-select__frame',
+  openFrameClassName = 'mouse-select__frame--open',
   startSelectionCallback,
   finishSelectionCallback,
-}: MouseSelectProps) => {
+}: ReactMouseSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [positions, setPositions] = useState(defaultPositionState);
 
   const borderRef = useRef<HTMLDivElement | null>(null);
-  const myPositionRef = useRef(positions);
-  const isOpenRef = useRef(isOpen);
+  const myPositionRef = useRef<MouseMovePosition>(positions);
+  const isOpenRef = useRef<boolean>(isOpen);
 
   const handleClick = (e: MouseEvent) => e.stopPropagation();
 
@@ -68,7 +72,7 @@ export const MouseBorderSelect = ({
     handleSelection(
       elements,
       { ...myPositionRef.current, ...newState },
-      { tolerance, activeItemClassName, isOpen: isOpenRef.current }
+      { tolerance, selectedItemClassName, isOpenRef, saveSelectAfterFinish }
     )
     setPositions((state) => ({ ...state, ...newState }));
   };
@@ -86,10 +90,10 @@ export const MouseBorderSelect = ({
     for (let i = 0; i < elements.length; i++) {
       const item = elements[i];
 
-      if (item.classList.contains(activeItemClassName)) {
-        console.log('выделенный элемент');
+      if (item.classList.contains(selectedItemClassName)) {
+        // console.log('выделенный элемент');
         selectedElement.push(item);
-        item.classList.remove(activeItemClassName)
+        if (!saveSelectAfterFinish) item.classList.remove(selectedItemClassName)
       }
     }
 
@@ -171,8 +175,10 @@ export const MouseBorderSelect = ({
   const renderEl = () => {
     return (
       <div
-        className={`mouse-border-select${isOpen ? ' mouse-border-select--open' : ''}`}
+        className={`${frameClassName} ${isOpen ? ` ${openFrameClassName}` : ''}`}
         style={{
+          position: 'absolute',
+          display: `${isOpen ? 'block': 'none'}`,
           top: `${positions.y}px`,
           left: `${positions.x}px`,
           width: `${positions.width}px`,

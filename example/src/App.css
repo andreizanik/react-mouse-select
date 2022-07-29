@@ -21,13 +21,7 @@
   background: red;
 }
 
-.mouse-border-select {
+.mouse-select__frame {
   background: red;
   opacity: .5;
-  position: absolute;
-  display: none;
 }
-
-.mouse-border-select--open {
-   display: block;
- }

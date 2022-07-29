@@ -1,4 +1,5 @@
-import { throttle } from 'lodash';
+import throttle  from 'lodash.throttle';
+
 import { selectionCheck } from './selectionСheck';
 import { ElementPosition, HandleSelectionOptions, MouseMovePosition } from '../types';
 
@@ -15,13 +16,15 @@ export const handleSelection = throttle((
   for(let i = 0; i < elements.length; i++) {
     const item = elements[i];
 
-    if (!options.isOpen) {
-      item.classList.remove(options.activeItemClassName);
+    if (!options.isOpenRef.current) {
+      if (!options.saveSelectAfterFinish) {
+        item.classList.remove(options.selectedItemClassName);
+      }
       continue;
     }
 
     const itemPosition = item.getBoundingClientRect();
-    const alreadySelected = item.classList.contains(options.activeItemClassName);
+    const alreadySelected = item.classList.contains(options.selectedItemClassName);
 
     const elementPosition: ElementPosition = {
       top: itemPosition.top + window.scrollY,
@@ -32,7 +35,7 @@ export const handleSelection = throttle((
 
     const isSelected = selectionCheck(elementPosition, position, options.tolerance);
 
-    if (isSelected && !alreadySelected) item.classList.add(options.activeItemClassName);
-    if (!isSelected && alreadySelected) item.classList.remove(options.activeItemClassName);
+    if (isSelected && !alreadySelected) item.classList.add(options.selectedItemClassName);
+    if (!isSelected && alreadySelected) item.classList.remove(options.selectedItemClassName);
   }
 }, 100)

@@ -62,3 +62,25 @@ export interface MouseSelectProps {
   finishSelectionCallback?: (items: Element[], e: MouseEvent) => void;
   //duringSelectionCallback?: (e: MouseEvent) => void;
 }
+
+export interface HandleSelectionOptions {
+  activeItemClassName: string;
+  tolerance: number;
+  isOpen: boolean;
+}
+
+export interface MouseMovePosition {
+  startX: number;
+  startY: number;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface ElementPosition {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+}

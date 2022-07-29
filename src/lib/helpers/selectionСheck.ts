@@ -1,11 +1,6 @@
-interface IPosition {
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-}
+import { ElementPosition } from '../types';
 
-export const selectionCheck = (elementPosition: IPosition, framePosition: IPosition, tolerance: number) => {
+export const selectionCheck = (elementPosition: ElementPosition, framePosition: ElementPosition, tolerance: number) => {
   const aLeftOfB = elementPosition.right - tolerance < framePosition.left;
   const aRightOfB = elementPosition.left + tolerance > framePosition.right;
   const aAboveB = elementPosition.top + tolerance > framePosition.bottom;

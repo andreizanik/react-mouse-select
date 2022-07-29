@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import { throttle } from 'lodash';
 
-import { selectionCheck } from './utils/selectionСheck';
-import { MouseSelectProps } from './types';
+import { handleSelection } from './helpers/handleSelection';
+import { mouseMoveCheckToStart } from './helpers/mouseMoveCheckToStart';
+import { MouseMovePosition, MouseSelectProps } from './types';
 
 let elements: HTMLCollection;
-const defaultPositionState = {
+const defaultPositionState: MouseMovePosition = {
   startX: 0,
   startY: 0,
   x: 0,
@@ -34,54 +34,14 @@ export const MouseBorderSelect = ({
   const myPositionRef = useRef(positions);
   const isOpenRef = useRef(isOpen);
 
-  const handleSelect = throttle((currPositions) => {
-    const framePosition = {
-      top: currPositions.y,
-      bottom: currPositions.y + currPositions.height,
-      left: currPositions.x,
-      right: currPositions.x + currPositions.width,
-    }
-
-    for(let i = 0; i < elements.length; i++) {
-      const item = elements[i];
-
-      if (!isOpenRef.current) {
-        item.classList.remove(activeItemClassName);
-        continue;
-      }
-
-      const itemPosition = item.getBoundingClientRect();
-      const alreadySelected = item.classList.contains(activeItemClassName);
-
-      const elementPosition = {
-        top: itemPosition.top + window.scrollY,
-        bottom: itemPosition.bottom + window.scrollY,
-        left: itemPosition.left,
-        right: itemPosition.right,
-      }
-
-      const isSelected = selectionCheck(elementPosition, framePosition, tolerance);
-
-      if (isSelected && !alreadySelected) item.classList.add(activeItemClassName);
-      if (!isSelected && alreadySelected) item.classList.remove(activeItemClassName);
-    }
-  }, 100)
-
   const handleClick = (e: MouseEvent) => e.stopPropagation();
 
   const handleMoueMove = (e: MouseEvent) => {
-    console.log('handleMoueMove');
     const { pageX, pageY } = e;
-    const newState: any = {};
+    const newState: Partial<MouseMovePosition> = {};
 
     // условие с координатами надо, что бы при обычном клике не навешивалсоь событие handleClick
-    if (!isOpenRef.current
-      && (
-        myPositionRef.current.startX > pageX + sensitivity
-        || myPositionRef.current.startX + sensitivity < pageX
-        || myPositionRef.current.startY > pageY + sensitivity
-        || myPositionRef.current.startY + sensitivity < pageY
-      )) {
+    if (!isOpenRef.current && mouseMoveCheckToStart(myPositionRef.current, pageX, pageY, sensitivity)) {
 
       // нужно для того что бы предотвратить распростарние клика и выполенния дургих обработчиков
       if (onClickPreventDefault) {
@@ -105,13 +65,15 @@ export const MouseBorderSelect = ({
       newState.y = pageY;
     }
 
-    handleSelect({ ...myPositionRef.current, ...newState });
+    handleSelection(
+      elements,
+      { ...myPositionRef.current, ...newState },
+      { tolerance, activeItemClassName, isOpen: isOpenRef.current }
+    )
     setPositions((state) => ({ ...state, ...newState }));
   };
 
-  // ОТПУСКАНИЕ
   const handleMouseUp = (e: MouseEvent) => {
-    console.log('handleMouseUp');
     setPositions(defaultPositionState);
     if (containerRef && containerRef?.current) containerRef.current.removeEventListener('mousemove', handleMoueMove);
     else document.removeEventListener('mousemove', handleMoueMove);
@@ -131,16 +93,12 @@ export const MouseBorderSelect = ({
       }
     }
 
-    // Element
     if (finishSelectionCallback) finishSelectionCallback(selectedElement, e);
-    //elements = undefined;
     setIsOpen(false);
 
   };
 
-  // НАЖАТИЕ
   const handleMouseDown = (e: MouseEvent) => {
-    console.log('handleMouseDown')
     //  проверяем, что б была нажата только левая кнопка мыши
     if (e.button !== 0) return null;
 
@@ -180,7 +138,6 @@ export const MouseBorderSelect = ({
     const elementBorder = borderRef.current;
     if (element) element.addEventListener('mousedown', handleMouseDown);
 
-    // @ts-ignore
     if (element) {
       element.addEventListener('mousedown', handleMouseDown);
       element.addEventListener('selectstart', handleSelectStart);
@@ -190,7 +147,6 @@ export const MouseBorderSelect = ({
     }
 
     return () => {
-      // elements = [];
       if (element) {
         element.removeEventListener('mousedown', handleMouseDown);
         element.removeEventListener('mousemove', handleMoueMove);

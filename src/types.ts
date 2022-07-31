@@ -2,7 +2,7 @@ import { MutableRefObject } from 'react';
 
 export interface ReactMouseSelectProps {
   /**
-   * container ref in which selecting should work
+   * Container ref in which selecting should work
    */
   containerRef?: MutableRefObject<HTMLElement | null>;
 
@@ -25,7 +25,6 @@ export interface ReactMouseSelectProps {
   tolerance? : number;
 
   /**
-   *
    * When the selection ends, after the onMouseUp event, the onClick event is dispatched by default
    * If = true, the event bubbling is prevented after the selection
    * With a normal click (without selection) the event happens standardly
@@ -67,18 +66,20 @@ export interface ReactMouseSelectProps {
   notStartWithSelectableElements?: boolean;
 
   /**
+   * Keep selected Item ClassName on selected items after selection is complete
+   * default = false
+   */
+  saveSelectAfterFinish?: boolean
+
+  /**
    * Callback that calls at the start of the selection (when the frame appears)
    */
   startSelectionCallback?: (e: MouseEvent) => void;
+
   /**
    * Callback that calls at the end of the selection
    */
   finishSelectionCallback?: (items: Element[], e: MouseEvent) => void;
-
-  /**
-   * сохранять selectedItemClassName у выделенных элеметов после завершения выделения
-   */
-  saveSelectAfterFinish?: boolean
 }
 
 export interface HandleSelectionOptions {

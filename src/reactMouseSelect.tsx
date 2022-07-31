@@ -27,7 +27,7 @@ export const ReactMouseSelect = ({
   itemClassName = 'mouse-select__selectable',
   selectedItemClassName = 'selected',
   frameClassName = 'mouse-select__frame',
-  openFrameClassName = 'mouse-select__frame--open',
+  openFrameClassName = 'open',
   startSelectionCallback,
   finishSelectionCallback,
 }: ReactMouseSelectProps) => {

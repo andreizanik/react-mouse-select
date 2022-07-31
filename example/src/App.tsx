@@ -20,6 +20,7 @@ function App() {
       <ReactMouseSelect
         containerRef={containerRef}
         portalContainer={borderSelectionContainer}
+        itemClassName="mouse-select__selectable"
         onClickPreventDefault={true}
         notStartWithSelectableElements={true}
         startSelectionCallback={() => console.log('startSelectionCallback')}

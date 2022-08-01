@@ -11,12 +11,10 @@
 Насколько сложным не был бы ваш кейс, вы сможете реализовать его в `finishSelectionCallback`
 имея массив всех выделенных элементов
 
-[//]: # (## DEMO )
+## DEMO 
+![Example](https://andreizanik.github.io/react-mouse-select/example.gif)
 
-[//]: # (тут будет гифка с тем как это выделяется)
-
-[//]: # (Try it out &#40;ссылка&#41;)
-
+[Try it out](https://andreizanik.github.io/react-mouse-select)
 
 ## Installation
 ```

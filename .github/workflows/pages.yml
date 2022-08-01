@@ -16,6 +16,8 @@ jobs:
 
     - run: cd ./example
       shell: bash
+    - run: ls
+      shell: bash
     - run: npm i
       shell: bash
     - run: npm ci

@@ -1,7 +1,31 @@
 {
   "name": "react-mouse-select",
-  "description": "A simple library for selecting objects by moving the mouse",
-  "version": "1.0.0",
+  "description": "A simple react library for selecting elements by moving the mouse",
+  "version": "0.0.0",
+  "author": {
+    "name": "Andrei Zanouski",
+    "email": "andreizanik@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreizanik/react-mouse-select/issues"
+  },
+  "homepage": "https://github.com/andreizanik/react-mouse-select#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreizanik/react-mouse-select.git"
+  },
+  "keywords": [
+    "selectable",
+    "selection",
+    "selecting",
+    "mouse",
+    "drag",
+    "react",
+    "touch",
+    "react",
+    "elements"
+  ],
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +60,6 @@
     "typescript": "^4.7.4"
   },
   "scripts": {
-    "start": "react-scripts start",
     "rollup": "rollup -c"
   },
   "eslintConfig": {

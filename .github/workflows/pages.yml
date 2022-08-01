@@ -14,5 +14,22 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Deploy react app to github pages
-      uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
+    - run: cd ./example
+      shell: bash
+    - run: npm i
+      shell: bash
+    - run: npm ci
+      shell: bash
+    - run: npm run build
+      shell: bash
+    - run: git config user.name github-actions
+      shell: bash
+    - run: git config user.email github-actions@github.com
+      shell: bash
+    - run: git --work-tree build add --all
+      shell: bash
+    - run: git commit -m "Automatic Deploy action run by github-actions"
+      shell: bash
+    - run: git push origin HEAD:gh-pages --force
+      shell: bash
+

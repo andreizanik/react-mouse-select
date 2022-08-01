@@ -1,7 +1,7 @@
 import { MutableRefObject } from 'react';
 
-export type FinishSelectionCallback = (items: Element[], e: MouseEvent) => void;
-export type StartSelectionCallback = (e: MouseEvent) => void;
+export type TFinishSelectionCallback = (items: Element[], e: MouseEvent) => void;
+export type TStartSelectionCallback = (e: MouseEvent) => void;
 
 export interface ReactMouseSelectProps {
   /**
@@ -77,12 +77,12 @@ export interface ReactMouseSelectProps {
   /**
    * Callback that calls at the start of the selection (when the frame appears)
    */
-  startSelectionCallback?: StartSelectionCallback;
+  startSelectionCallback?: TStartSelectionCallback;
 
   /**
    * Callback that calls at the end of the selection
    */
-  finishSelectionCallback?: FinishSelectionCallback;
+  finishSelectionCallback?: TFinishSelectionCallback;
 }
 
 export interface HandleSelectionOptions {

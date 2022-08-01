@@ -1,2 +1,2 @@
 export { ReactMouseSelect } from './reactMouseSelect'
-export type { ReactMouseSelectProps, FinishSelectionCallback, StartSelectionCallback } from './types'
+export type { ReactMouseSelectProps, TFinishSelectionCallback, TStartSelectionCallback } from './types'

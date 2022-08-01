@@ -145,3 +145,16 @@ The `ReactMouseSelect` component accepts a few props:
   
 * `finishSelectionCallback` (function `(items: Element[], e: MouseEvent) => void;`):<br/>
   Callback that calls at the end of the selection
+
+
+### Development plans
+If you have a desire, you can help the development of this library
+
+* поддержка касаний на мобильных телефонах
+* оптимизация производительности за счет перебора циклом не всех элементов, а только необходимой части
+  <br/>Идея: <br/>
+  имеем массив выделенных элементов и массив не выделенных элементов. В случае увеличения рамки по одной из сторон
+  проходим массив не выделенных элементов и перемещаем в выделенные. В случае уменьшения рамки по двум сторонам
+  проходим массив выделенных элементво и необхожимые перемещаем в массив не выделенных элементов
+* Для простоты использования компонета, добавить WrapperComponent в котором будет реализован рендер container и portal для рамки
+

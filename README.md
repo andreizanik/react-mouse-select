@@ -1,4 +1,4 @@
-#Selecting DOM elements by moving the mouse for React
+# Selecting DOM elements by moving the mouse for React
 
 Компонент предназанчен для визуализации выделения DOM элементов  с помощью движения курсора по экрану,
 реализацию дальнейшего взаимодействия с выделенными файлами мы оставляем за вам
@@ -11,9 +11,11 @@
 Насколько сложным не был бы ваш кейс, вы сможете реализовать его в `finishSelectionCallback`
 имея массив всех выделенных элементов
 
-##DEMO 
-тут будет гифка с тем как это выделяется
-Try it out (ссылка)
+[//]: # (## DEMO )
+
+[//]: # (тут будет гифка с тем как это выделяется)
+
+[//]: # (Try it out &#40;ссылка&#41;)
 
 
 ## Installation
@@ -29,12 +31,14 @@ function App() {
   const borderSelectionContainer = document.getElementById('portal') as HTMLElement;
   const containerRef = useRef<HTMLElement>(null);
 
+  const itemClassName = 'mouse-select__selectable';
+  
   return (
     <div className="App">
       <main className="container" ref={containerRef}>
         {[...Array(10)].map((item, idx) => {
           return (
-            <div key={idx} className="mouse-select__selectable" data-id={idx}>
+            <div key={idx} className={itemClassName} data-id={idx}>
               Selectable block
             </div>
           )
@@ -43,7 +47,7 @@ function App() {
       <ReactMouseSelect
         containerRef={containerRef}
         portalContainer={borderSelectionContainer}
-        itemClassName="mouse-select__selectable"
+        itemClassName={itemClassName}
       />
     </div>
   );
@@ -54,7 +58,10 @@ export default App;
 
 _**!!! ОБРАТИТЕ ВНИМАНИЕ**_
 
-Вам самостоятельно нужно описать стили для рамки и выделенных элементов,
+Вам самостоятельно нужно позаботиться о том что бы контейнер `containerRef` содержал элементы с классом `itemClassName`,
+как это показано в примере выше.
+
+Также вам нужно описать стили для рамки и выделенных элементов,
 чтобы выделение было видно визуально
 
 Вы можете стилизовать рамку выделения с помощью классов `frameClassName` и `openFrameClassName`
@@ -81,7 +88,7 @@ Example:
 }
 ```
 
-##Configuration
+## Configuration
 
 The `ReactMouseSelect` component accepts a few props:
 
@@ -140,24 +147,3 @@ The `ReactMouseSelect` component accepts a few props:
   
 * `finishSelectionCallback` (function `(items: Element[], e: MouseEvent) => void;`):<br/>
   Callback that calls at the end of the selection
-
-
-
-  
-
-
-
-
-
-
-
-| Prop name                           | Default | Description                                                                                                                                                        |
-|:------------------------------------|:--------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **containerRef**<br/>_[required]_   | -       | Container ref in which selecting should work                                                                                                                       |
-| **portalContainer**<br/>_[required] | -       | Portal container in which the highlighting frame will be rendered                                                                                                  |
-| **sensitivity** (number)            | 10      | Sensitivity in pixels<br/>Selection starts working only if the cursor is shifted for the specified number of pixels                                                |
-| **tolerance** (number)              | 0       | The number of pixels that must be contained in a frame for the element to be selected                                                                              |
-| **onClickPreventDefault** (boolean) | false   | When the selection ends, after the onMouseUp event, the onClick event is dispatched by default<br/>If = true, the event bubbling is prevented after the selection  |                                                                                                                 |
-|                                     |         |                                                                                                                                                                    |
-
-

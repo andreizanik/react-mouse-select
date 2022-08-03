@@ -5,7 +5,6 @@ import { handleSelection } from './helpers/handleSelection';
 import { mouseMoveCheckToStart } from './helpers/mouseMoveCheckToStart';
 import { MouseMovePosition, ReactMouseSelectProps } from './types';
 
-
 let elements: HTMLCollection;
 const defaultPositionState: MouseMovePosition = {
   startX: 0,
@@ -44,10 +43,8 @@ export const ReactMouseSelect = ({
     const { pageX, pageY } = e;
     const newState: Partial<MouseMovePosition> = {};
 
-    // условие с координатами надо, что бы при обычном клике не навешивалсоь событие handleClick
     if (!isOpenRef.current && mouseMoveCheckToStart(myPositionRef.current, pageX, pageY, sensitivity)) {
 
-      // нужно для того что бы предотвратить распростарние клика и выполенния дургих обработчиков
       if (onClickPreventDefault) {
         window.addEventListener('click', handleClick, { capture: true, once: true });
       }
@@ -91,7 +88,6 @@ export const ReactMouseSelect = ({
       const item = elements[i];
 
       if (item.classList.contains(selectedItemClassName)) {
-        // console.log('выделенный элемент');
         selectedElement.push(item);
         if (!saveSelectAfterFinish) item.classList.remove(selectedItemClassName)
       }
@@ -103,7 +99,7 @@ export const ReactMouseSelect = ({
   };
 
   const handleMouseDown = (e: MouseEvent) => {
-    //  проверяем, что б была нажата только левая кнопка мыши
+    //  check that only the left mouse button is pressed
     if (e.button !== 0) return null;
 
     let startSelection: boolean = true;

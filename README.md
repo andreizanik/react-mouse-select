@@ -1,15 +1,12 @@
-# Selecting DOM elements by moving the mouse for React
+# A component for React that allows selecting DOM elements by moving the mouse
 
-Компонент предназанчен для визуализации выделения DOM элементов  с помощью движения курсора по экрану,
-реализацию дальнейшего взаимодействия с выделенными файлами мы оставляем за вам
-через callback `finishSelectionCallback`
+The component is designed to visualize the selection of DOM elements by moving the cursor on the screen.
+We leave the implementation of further interaction with selected files to you through the callback `finishSelectionCallback`.
 
-Кажется что такой подход делает бибилотеку более универсальной,
-потому что дальшейнее взаимодействие с выделенными объектами всегда уникально.
-В одном случае вам нужно получить id из datasets и обновить redux-store.
-В другом случае добавить класс к выледенным элементам и отправить запрос на сервер.
-Насколько сложным не был бы ваш кейс, вы сможете реализовать его в `finishSelectionCallback`
-имея массив всех выделенных элементов
+This approach makes the library multipurpose because the further interaction with selected files is always unique.
+In one case, you need to get the Id from Datasets and update Redux-store. 
+Otherwise, you need to add a class to the selected elements and send a request to the server. 
+No matter how complex your case is, you can implement it with `finishSelectionCallback` having an array of all selected elements.
 
 ## DEMO 
 ![Example](https://andreizanik.github.io/react-mouse-select/example.gif)
@@ -54,20 +51,17 @@ function App() {
 export default App;
 ```
 
-_**!!! ОБРАТИТЕ ВНИМАНИЕ**_
+_**!!! PLEASE NOTE**_
 
-Вам самостоятельно нужно позаботиться о том что бы контейнер `containerRef` содержал элементы с классом `itemClassName`,
-как это показано в примере выше.
+You need to add elements with the class `itemClassName` to the container `containerRef`.
+See the example above.
 
-Также вам нужно описать стили для рамки и выделенных элементов,
-чтобы выделение было видно визуально
+You also need to add styles to a frame and selected elements to make the selection visible.
 
-Вы можете стилизовать рамку выделения с помощью классов `frameClassName` и `openFrameClassName`
-или же оставить ее невидимой
+You can style the selecting frame with the use of `frameClassName` and `openFrameClassName` or leave it invisible.
+You can style elements with `itemClassName` and `selectedItemClassName`.
 
-Стилизовать элементы можно с помощью `itemClassName` и `selectedItemClassName`
-
-Example:
+Css example:
 ```css
 .mouse-select__selectable {
     width: 100px;
@@ -148,13 +142,17 @@ The `ReactMouseSelect` component accepts a few props:
 
 
 ### Development plans
-If you have a desire, you can help the development of this library
+If you want, you can help me with the development of this library.
 
-* поддержка касаний на мобильных телефонах
-* оптимизация производительности за счет перебора циклом не всех элементов, а только необходимой части
-  <br/>Идея: <br/>
-  имеем массив выделенных элементов и массив не выделенных элементов. В случае увеличения рамки по одной из сторон
-  проходим массив не выделенных элементов и перемещаем в выделенные. В случае уменьшения рамки по двум сторонам
-  проходим массив выделенных элементво и необхожимые перемещаем в массив не выделенных элементов
-* Для простоты использования компонета, добавить WrapperComponent в котором будет реализован рендер container и portal для рамки
+* Support of touch events for mobile devices
+* Performance tuning by looping through the array, not of all elements but required ones
+  <br/>Idea: <br/>
+  We have an array of selected elements and an array of non-selected elements. 
+  In case one side of the frame is increased, iterate over the array of non-selected elements and move them to the selected ones.
+  In case two sides of the frame are reduced, iterate over the array of selected elements and move them to the non-selected ones.
+
+* For the component ease of use, add WrapperComponent in which a render container and a portalContainer will be implemented.
+* Add auto scroll if the cursor moves to the boundary of the browser window.
+* Callbacks trigger for each element entering or leaving the selection.
+
 

@@ -1,5 +1,10 @@
 # A component for React that allows selecting DOM elements by moving the mouse
 
+[![npm version](https://img.shields.io/npm/v/react-mouse-select?color=birgtgreen)](https://www.npmjs.com/package/react-mouse-select)
+[![npm downloads](https://img.shields.io/npm/dm/react-mouse-select)](https://www.npmjs.com/package/react-mouse-select)
+![npm downloads](https://img.shields.io/npm/l/react-mouse-select)
+
+
 The component is designed to visualize the selection of DOM elements by moving the cursor on the screen.
 We leave the implementation of further interaction with selected files to you through the callback `finishSelectionCallback`.
 

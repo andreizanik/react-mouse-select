@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://andreizanik.github.io/react-mouse-select/",
   "dependencies": {
+    "@craco/craco": "^6.4.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",

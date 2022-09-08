@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ReactMouseSelect, TFinishSelectionCallback } from 'react-mouse-select';
+import { ReactMouseSelect, TFinishSelectionCallback } from '../../../../src/';
 import { ControlPanel } from '../ControlPanel';
 import { SelectItem } from '../SelectItem';
 
@@ -28,7 +28,7 @@ export const SelectContainer = () => {
         <ControlPanel isSelecting={isSelecting} selectedItems={selectedItems} />
       </div>
       <main  className="container" ref={containerRef}>
-        {[...Array(30)].map((item, idx) => (
+        {[...Array(100)].map((item, idx) => (
           <SelectItem key={idx} id={idx} active={selectedItems.includes(idx)} />
         ))}
       </main>

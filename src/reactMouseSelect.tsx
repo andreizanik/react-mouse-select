@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { handleSelection } from './helpers/handleSelection';
 import { mouseMoveCheckToStart } from './helpers/mouseMoveCheckToStart';
+import { initScroll, clearTimer } from './helpers/scroll/';
 import { MouseMovePosition, ReactMouseSelectProps } from './types';
 
 let elements: HTMLCollection;
@@ -20,6 +21,7 @@ export const ReactMouseSelect = ({
   sensitivity = 10,
   tolerance = 0,
   portalContainer,
+  edgeSize = 100,
   onClickPreventDefault = false,
   notStartWithSelectableElements = false,
   saveSelectAfterFinish = false,
@@ -72,6 +74,9 @@ export const ReactMouseSelect = ({
       { tolerance, selectedItemClassName, isOpenRef, saveSelectAfterFinish }
     )
     setPositions((state) => ({ ...state, ...newState }));
+
+    // scroll when approaching the edge
+    if (edgeSize > 0) initScroll(e, edgeSize);
   };
 
   const handleMouseUp = (e: MouseEvent) => {
@@ -95,7 +100,7 @@ export const ReactMouseSelect = ({
 
     if (finishSelectionCallback) finishSelectionCallback(selectedElement, e);
     setIsOpen(false);
-
+    clearTimer();
   };
 
   const handleMouseDown = (e: MouseEvent) => {

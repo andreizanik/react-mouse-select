@@ -28,6 +28,14 @@ export interface ReactMouseSelectProps {
   tolerance? : number;
 
   /**
+   * The size of the edge of the viewport.
+   * The scroll starts automatically when the cursor enters the borders of this edge
+   * If equal 0, scrolling will not work
+   * edgeSize = 100
+   */
+  edgeSize? : number;
+
+  /**
    * When the selection ends, after the onMouseUp event, the onClick event is dispatched by default
    * If = true, the event bubbling is prevented after the selection
    * With a normal click (without selection) the event happens standardly

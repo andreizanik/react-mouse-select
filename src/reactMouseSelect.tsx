@@ -21,7 +21,7 @@ export const ReactMouseSelect = ({
   sensitivity = 10,
   tolerance = 0,
   portalContainer,
-  edgeSize = 150,
+  edgeSize = 100,
   onClickPreventDefault = false,
   notStartWithSelectableElements = false,
   saveSelectAfterFinish = false,
@@ -76,7 +76,7 @@ export const ReactMouseSelect = ({
     setPositions((state) => ({ ...state, ...newState }));
 
     // scroll when approaching the edge
-    initScroll(e, edgeSize);
+    if (edgeSize > 0) initScroll(e, edgeSize);
   };
 
   const handleMouseUp = (e: MouseEvent) => {

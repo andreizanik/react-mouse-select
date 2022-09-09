@@ -28,8 +28,9 @@ export interface ReactMouseSelectProps {
   tolerance? : number;
 
   /**
-   * todo
-   * размер границы по периметру окна браузера, в которой ничинается скоролл при попадании туда курсора)
+   * The size of the edge of the viewport.
+   * The scroll starts automatically when the cursor enters the borders of this edge
+   * If equal 0, scrolling will not work
    * edgeSize = 100
    */
   edgeSize? : number;

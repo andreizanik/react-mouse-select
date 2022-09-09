@@ -1,5 +1,4 @@
 import { CoordinatesAndDimensions } from './types';
-import { adjustWindowScroll } from './adjustWindowScroll';
 import { checkForWindowScroll } from './checkForWindowScroll';
 
 let _timer: any = null;
@@ -68,7 +67,7 @@ export const initScroll = (e: MouseEvent, edgeSize: number) => {
   const maxScrollX = ( documentWidth - viewportWidth );
   const maxScrollY = ( documentHeight - viewportHeight );
 
-  const coordinatesAndDimensions: CoordinatesAndDimensions = {
+  checkForWindowScroll({
     maxScrollY,
     maxScrollX,
     isInLeftEdge,
@@ -82,20 +81,5 @@ export const initScroll = (e: MouseEvent, edgeSize: number) => {
     viewportX,
     viewportY,
     edgeSize,
-  }
-  console.log(coordinatesAndDimensions);
-  // checkForWindowScroll(coordinatesAndDimensions)
-  (function checkForWindowScroll() {
-    clearTimeout( _timer );
-
-    if ( adjustWindowScroll(coordinatesAndDimensions) ) {
-
-      _timer = setTimeout( checkForWindowScroll, 50 );
-
-    }
-
-  })();
-
-
-
+  })
 }

@@ -28,6 +28,13 @@ export interface ReactMouseSelectProps {
   tolerance? : number;
 
   /**
+   * todo
+   * размер границы по периметру окна браузера, в которой ничинается скоролл при попадании туда курсора)
+   * edgeSize = 100
+   */
+  edgeSize? : number;
+
+  /**
    * When the selection ends, after the onMouseUp event, the onClick event is dispatched by default
    * If = true, the event bubbling is prevented after the selection
    * With a normal click (without selection) the event happens standardly

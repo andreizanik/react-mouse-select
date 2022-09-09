@@ -10,16 +10,15 @@ import { CoordinatesAndDimensions } from './types';
 // --
 // NOTE: There are probably better ways to handle the ongoing animation
 // check.
-export const checkForWindowScroll = (() => {
-  let _timer: any = null;
+let _timer: any = null;
 
-  const _checkForWindowScroll = (coordinatesAndDimensions: CoordinatesAndDimensions) => {
-    clearTimeout( _timer );
-
-    if ( adjustWindowScroll(coordinatesAndDimensions) ) {
-      _timer = setTimeout( _checkForWindowScroll, 50 );
+export const checkForWindowScroll = (coordinatesAndDimensions: CoordinatesAndDimensions) => {
+  (function _check() {
+    clearTimeout(_timer);
+    if (adjustWindowScroll(coordinatesAndDimensions)) {
+      _timer = setTimeout( _check, 50 );
     }
-  }
+  })()
+}
 
-  return _checkForWindowScroll;
-})()
+export const clearTimer = () => clearTimeout(_timer);

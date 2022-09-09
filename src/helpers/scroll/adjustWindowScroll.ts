@@ -5,7 +5,7 @@ export const adjustWindowScroll = (data: CoordinatesAndDimensions) => {
   // Get the current scroll position of the document.
   const currentScrollX = window.pageXOffset;
   const currentScrollY = window.pageYOffset;
-
+  console.log(data);
   // Determine if the window can be scrolled in any particular direction.
   const canScrollUp = ( currentScrollY > 0 );
   const canScrollDown = ( currentScrollY < data.maxScrollY );

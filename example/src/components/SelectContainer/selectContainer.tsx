@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ReactMouseSelect, TFinishSelectionCallback } from '../../../../src/';
+import { ReactMouseSelect, TFinishSelectionCallback } from 'react-mouse-select';
 import { ControlPanel } from '../ControlPanel';
 import { SelectItem } from '../SelectItem';
 

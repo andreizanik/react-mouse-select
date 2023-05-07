@@ -20,7 +20,7 @@ export const ReactMouseSelect = ({
   containerRef,
   sensitivity = 10,
   tolerance = 0,
-  portalContainer,
+  portalContainer = document.body,
   edgeSize = 100,
   onClickPreventDefault = false,
   notStartWithSelectableElements = false,

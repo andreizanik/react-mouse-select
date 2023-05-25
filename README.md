@@ -93,8 +93,8 @@ The `ReactMouseSelect` component accepts a few props:
   Container ref in which selecting should work
 
 
-* `portalContainer`  [required]:<br/>
-  Portal container in which the highlighting frame will be rendered
+* `portalContainer` _default = document.body_:<br/>
+  Portal container in which the highlighting frame will be rendered.
 
 
 * `sensitivity` (number) _default = 10_:<br/>

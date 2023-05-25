@@ -155,6 +155,7 @@ The `ReactMouseSelect` component accepts a few props:
 ### Development plans
 If you want, you can help me with the development of this library.
 
+* **DONE**: Add auto scroll if the cursor moves to the boundary of the browser window.
 * Support of touch events for mobile devices
 * Performance tuning by looping through the array, not of all elements but required ones
   <br/>Idea: <br/>
@@ -163,7 +164,7 @@ If you want, you can help me with the development of this library.
   In case two sides of the frame are reduced, iterate over the array of selected elements and move them to the non-selected ones.
 
 * For the component ease of use, add WrapperComponent in which a render container and a portalContainer will be implemented.
-* Add auto scroll if the cursor moves to the boundary of the browser window.
+
 * Callbacks trigger for each element entering or leaving the selection.
 
 

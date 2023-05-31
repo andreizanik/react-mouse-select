@@ -1,7 +1,7 @@
 {
   "name": "react-mouse-select",
   "description": "A simple react library for selecting elements by moving the mouse",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": {
     "name": "Andrei Zanouski",
     "email": "andreizanik@gmail.com"

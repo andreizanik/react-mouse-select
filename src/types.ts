@@ -12,7 +12,7 @@ export interface ReactMouseSelectProps {
   /**
    * Portal container in which the highlighting frame will be rendered
    */
-  portalContainer: HTMLElement;
+  portalContainer?: HTMLElement;
 
   /**
    * Sensitivity in pixels

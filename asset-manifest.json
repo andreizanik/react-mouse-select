@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-mouse-select/static/css/main.411510ad.css",
+    "main.js": "/react-mouse-select/static/js/main.360d8936.js",
+    "index.html": "/react-mouse-select/index.html",
+    "main.411510ad.css.map": "/react-mouse-select/static/css/main.411510ad.css.map",
+    "main.360d8936.js.map": "/react-mouse-select/static/js/main.360d8936.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.411510ad.css",
+    "static/js/main.360d8936.js"
+  ]
+}

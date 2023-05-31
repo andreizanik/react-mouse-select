@@ -1,1 +1,0 @@
-export { ControlPanel } from './controlPanel';
